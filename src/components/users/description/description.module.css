@@ -1,0 +1,56 @@
+.smileImg{
+    width: 70px;
+    height: 10vh;
+}
+
+.leftSide{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    width: 90%;
+    place-items: center;
+    padding: 10px;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    margin: 20px;
+}
+
+.rightSide{
+    display: grid;
+    grid-template-rows: 1fr;
+    width: 90%;
+}
+
+.description{
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 8fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.description h2{
+    color: rgb(103, 0, 158);
+    font-size: 20px;
+}
+.description h1{
+    color: rgb(103, 0, 158);
+    font-size: 25px;
+}
+.description {
+    color: rgb(103, 0, 158);
+    font-size: 20px;
+}
+
+
+.userBtn{
+    padding: 5px 20px;
+    align-items: center;
+    background-color: rgb(0, 200, 3);
+    border: none;
+    border-radius: 15px;
+    color: white;
+}

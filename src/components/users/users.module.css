@@ -1,0 +1,27 @@
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 10px;
+}
+
+.selectedPage{
+    font-weight: 700;
+    padding: 3px;
+    border: 1px solid black;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+
+.pagination{
+    text-align: center;
+    align-items: center;
+}
+
+.image{
+    height: 50vh;
+    margin-left: 200px;
+    width: 300px;
+}
+
