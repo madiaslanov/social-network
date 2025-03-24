@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-export let renderApp = (state) => {
+export let renderApp = () => {
     root.render(
         <Provider store={store}>
             <App />

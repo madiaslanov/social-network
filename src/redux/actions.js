@@ -9,11 +9,6 @@ export const addPost = (message) => ({
     message,
 });
 
-export const newTextValue = (newText) => ({
-    type: 'UPDATE_NEW_TEXT',
-    newText,
-})
-
 export const followUser = (userId) => ({
     type: 'FOLLOW_USER',
     userId
@@ -49,10 +44,11 @@ export const setUserProfile = (profile) => ({
     profile
 })
 
-export const setAuthUserData = (userData) => ({
+export const setAuthUserData = ({ userId, email, login, isAuth }) => ({
     type: 'SET_AUTH_USER_DATA',
-    userData
-})
+    payload: { userId, email, login, isAuth }
+});
+
 
 export const followingInProgress = (followingInProgress, userId) => ({
     type: 'FOLLOWING_IN_PROGRESS',
@@ -69,4 +65,15 @@ export const setStatus = (status) => ({
 export const setFormData = (formData) => ({
     type: 'SET_FORM_DATA',
     payload: formData
+})
+
+
+export const initializedSuccess = (initialized) => ({
+    type: 'INITIALIZED',
+    initialized
+})
+
+export const deletePost = (id) => ({
+    type: 'DELETE_POST',
+    id : Number(id)
 })

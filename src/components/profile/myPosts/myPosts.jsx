@@ -1,13 +1,15 @@
 import React from "react";
 import Post from "./post/post";
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useForm} from "react-hook-form";
 import style from "./myPosts.module.css";
 import {addPost} from "../../../redux/actions";
 
 const MyPostsForm = () => {
     const dispatch = useDispatch();
-    const {register, handleSubmit, reset, formState : {errors}} = useForm();
+    const {register, handleSubmit, reset, formState : {errors}} = useForm({
+        mode: "onSubmit"
+    });
 
     const onSubmit = (values) => {
         console.log(values);
@@ -16,7 +18,6 @@ const MyPostsForm = () => {
             reset();
         }
     }
-
 
     return (
         <div>
@@ -44,8 +45,8 @@ const MyPostsForm = () => {
 };
 
 const MyPosts = () => {
-    
-    
+
+
     const posts = useSelector((state) => state.profilePages.postsData);
     const postElement = posts.map((p) => <Post message={p.message} count={p.count} key={p.id} />);
     return (

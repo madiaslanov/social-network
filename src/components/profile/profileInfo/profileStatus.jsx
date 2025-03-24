@@ -4,24 +4,24 @@ import { updateUserStatus } from "../../../redux/thunk";
 
 const ProfileStatus = ({ profileStatus }) => {
     const dispatch = useDispatch();
-
     const [editMode, setEditMode] = useState(false);
     const [status, setStatus] = useState(profileStatus || "No status");
 
     useEffect(() => {
-        dispatch(updateUserStatus(profileStatus));
-        setStatus(profileStatus || "No status");
+        if (profileStatus !== status) {
+            setStatus(profileStatus || "No status");
+        }
     }, [profileStatus]);
 
     const onStatusChange = (e) => {
         setStatus(e.currentTarget.value);
-
     };
 
     const handleBlur = () => {
         setEditMode(false);
-        dispatch(updateUserStatus(status));
-        console.log('update')
+        if (status.trim() !== profileStatus) {
+            dispatch(updateUserStatus(status.trim()));
+        }
     };
 
     const handleKeyDown = (e) => {
@@ -29,6 +29,7 @@ const ProfileStatus = ({ profileStatus }) => {
             handleBlur();
         }
     };
+
     return (
         <>
             {!editMode ? (

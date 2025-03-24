@@ -1,7 +1,7 @@
 import {
     followingInProgress,
-    followUser,
-    isFetching, setAuthUserData, setStatus,
+    followUser, initializedSuccess,
+    isFetching, setAuthUserData, setInitializedSuccess, setStatus,
     setTotalCount,
     setUserProfile,
     setUsers,
@@ -11,11 +11,10 @@ import {
     followUserApi,
     getAuthUserApi,
     getProfileApi, getProfileStatusApi,
-    getUsersApi,
+    getUsersApi, loginUserApi, logoutUserApi,
     putProfileStatusApi,
     unfollowUserApi
 } from "../api/api";
-import {put} from "axios";
 
 export const getUsers = () => async (dispatch, getState) => {
     const {currentPage, pageSize} = getState().usersPages;
@@ -87,7 +86,8 @@ export const getAuth = () => async (dispatch) => {
             dispatch(setAuthUserData({
                 userId: data.data.id,
                 email: data.data.email,
-                login: data.data.login
+                login: data.data.login,
+                isAuth: true
             }));
         }
     } catch (error) {
@@ -104,6 +104,7 @@ export const setUserStatus = (status) => async (dispatch) => {
         console.error("Ошибка при получении статуса:", error);
     }
 };
+
 export const updateUserStatus = (status) => async (dispatch) => {
     try {
         const data = await putProfileStatusApi(status);
@@ -115,5 +116,50 @@ export const updateUserStatus = (status) => async (dispatch) => {
         }
     } catch (error) {
         console.error("Ошибка сети при обновлении статуса:", error);
+    }
+};
+
+export const login = (email, password, rememberMe) => async (dispatch) => {
+    try {
+        const data = await loginUserApi(email, password, rememberMe);
+        console.log("Ответ сервера:", data);
+
+        if (data.resultCode === 0) {
+            dispatch(getAuth());
+        } else {
+            console.error("Ошибка логина:", data.messages);
+        }
+    } catch (error) {
+        console.error("Ошибка сети при логине:", error);
+    }
+};
+
+
+
+export const logout = () => async (dispatch) => {
+    try {
+        const data = await logoutUserApi();
+        console.log("Ответ сервера при выходе:", data);
+
+        if (data.resultCode === 0) {
+            dispatch(setAuthUserData({
+                userId: null,
+                email: null,
+                login: null,
+                isAuth: false
+            }));
+        }
+    } catch (error) {
+        console.error("Ошибка выхода:", error);
+    }
+};
+
+export const initializedApp = () => async (dispatch) => {
+    try {
+        await dispatch(getAuth());
+        dispatch(initializedSuccess(true));
+    } catch (error) {
+        console.error("Ошибка инициализации:", error);
+        dispatch(initializedSuccess(false));
     }
 };

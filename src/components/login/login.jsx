@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useForm} from "react-hook-form";
 import style from "./login.module.css";
 import {useDispatch, useSelector} from "react-redux";
 import {setFormData} from "../../redux/actions";
+import {login} from "../../redux/thunk";
+import {useNavigate} from "react-router-dom";
 
-const Login = () => {
+const LoginForm = () => {
     const dispatch = useDispatch();
     const formData = useSelector((state) => state.form)
 
@@ -18,8 +20,9 @@ const Login = () => {
 
 
     const onSubmit = (values) => {
-        console.log(values);
+        console.log("Отправляемые данные:", values);
         dispatch(setFormData(values));
+        dispatch(login(values.email, values.password, values.rememberMe));
     };
 
     return (
@@ -28,17 +31,17 @@ const Login = () => {
                 <input
                     className={style.input}
                     type="text"
-                    placeholder="Login"
-                    {...register("login", {
-                        required: "Username is required",
+                    placeholder="Email"
+                    {...register("email", {
+                        required: "Email is required",
                         pattern: {
-                            value: /^(?!.*\.\.)(?!.*__)(?!.*\.$)(?!.*_$)[a-zA-Z0-9._]{3,20}$/,
-                            message: "Invalid username",
-                            maxLength: {value: 30, message: "Max Length of Usernames"},
+                            value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                            message: "Invalid email format",
                         },
                     })}
                 />
-                {errors.login && <p className={style.error}>{errors.login.message}</p>}
+
+                {errors.login && <p className={style.error}>{errors.email.message}</p>}
             </div>
 
             <div>
@@ -67,13 +70,18 @@ const Login = () => {
     );
 };
 
-const LoginForm = () => {
+const Login = () => {
+    const isAuthState = useSelector((state) => state.auth.isAuth);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (isAuthState) return navigate("/profile");
+    }, [navigate, isAuthState]);
     return (
         <div>
             <h1 className={style.title}>Login</h1>
-            <Login/>
+            <LoginForm/>
         </div>
     );
 };
 
-export default LoginForm;
+export default Login;

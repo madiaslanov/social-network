@@ -1,6 +1,6 @@
-import profileReduser from "./profileReduser";
-import dialogReduser from "./dialogReduser";
-import sidebarReduser from "./sidebarReduser";
+import profileReduser from "./profileReducer";
+import dialogReduser from "./dialogReducer";
+import sidebarReducer from "./sidebarReducer";
 
 let store = {
   _state: {
@@ -43,7 +43,7 @@ let store = {
 
     this._state.profileState = profileReduser(this._state.profileState, action);
     this._state.dialogState = dialogReduser(this._state.dialogState, action);
-    this._state.sidebarState = sidebarReduser(this._state.sidebarState, action);
+    this._state.sidebarState = sidebarReducer(this._state.sidebarState, action);
 
     this.rerenderEntireTree(this._state);
 

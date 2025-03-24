@@ -14,7 +14,7 @@ const initialState = {
 };
 
 
-const DialogReduser = (state = initialState, action) => {
+const DialogReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case 'SEND-MESSAGE':
@@ -32,4 +32,4 @@ const DialogReduser = (state = initialState, action) => {
 
 };
 
-export default DialogReduser;
+export default DialogReducer;

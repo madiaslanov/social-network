@@ -3,15 +3,16 @@ import axios from "axios";
 const instance = axios.create({
         withCredentials: true,
         headers: {
-            "API-KEY": "115035e9-7031-4bfd-9b30-39b2a23ede3b"},
+            "API-KEY": "115035e9-7031-4bfd-9b30-39b2a23ede3b"
+        },
         baseURL: "https://social-network.samuraijs.com/api/1.0/",
     }
 )
 
 
-export  const getUsersApi = (currentPage, pageSize) =>{
-    return  instance.get(`users?page=${currentPage}&count=${pageSize}`
-).then(res => {
+export const getUsersApi = (currentPage, pageSize) => {
+    return instance.get(`users?page=${currentPage}&count=${pageSize}`
+    ).then(res => {
         return res.data
     });
 }
@@ -26,8 +27,6 @@ export const unfollowUserApi = (userId) => {
 };
 
 
-
-
 export const getProfileApi = (userId) => {
     return instance.get(`profile/${userId}`).then(res => {
         return res.data
@@ -36,7 +35,7 @@ export const getProfileApi = (userId) => {
 
 
 export const getAuthUserApi = () => {
-    return  instance.get(`auth/me`).then(res => {
+    return instance.get(`auth/me`).then(res => {
         return res.data
     })
 }
@@ -49,5 +48,15 @@ export const getProfileStatusApi = (userId) => {
 
 
 export const putProfileStatusApi = (status) => {
-    return instance.put(`profile/status`, { status }).then(res => res.data);
+    return instance.put(`profile/status`, {status}).then(res => res.data);
+};
+
+
+export const loginUserApi = (email, password, rememberMe) => {
+    return instance.post(`auth/login`, {email, password, rememberMe}).then(res => res.data);
+}
+
+export const logoutUserApi = async () => {
+    const response = await instance.delete(`auth/login`);
+    return response.data;
 };

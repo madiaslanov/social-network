@@ -1,13 +1,13 @@
 const initialState = {
-    postsData: [{message: 'My first post', id: '1', count: 15},
-        {message: 'Good bye!', id: '2', count: 20}],
+    postsData: [{id: 1, message: 'My first post', count: 15},
+        {id: 2, message: 'Good bye!', count: 20}],
     newTextValue: '',
     profile: null,
     status: ""
 };
 
 
-const ProfileReduser = (state = initialState, action) => {
+const ProfileReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case 'ADD_POST':
@@ -36,10 +36,15 @@ const ProfileReduser = (state = initialState, action) => {
                 ...state,
                 status: action.status
             }
+        case 'DELETE_POST':
+            return {
+                ...state,
+                postsData: state.postsData.filter(post => Number(post.id) !== action.id)
+            };
         default:
             return state;
     }
 };
 
 
-export default ProfileReduser;
+export default ProfileReducer;
