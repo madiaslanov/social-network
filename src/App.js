@@ -2,7 +2,7 @@ import React, {lazy, Suspense, useEffect} from "react";
 import "./App.css";
 import Nav from "./components/nav/nav";
 import Dialogs from "./components/dialogs/dialogs";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes} from "react-router-dom";
 import News from "./components/news/news";
 import Music from "./components/music/music";
 import Set from "./components/settings/settings";
@@ -32,7 +32,7 @@ const App = () => {
     }
 
     return (
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <HashRouter basename={process.env.PUBLIC_URL}>
             <div className="app-wrapper">
                 <HeaderApi />
                 <Nav />
@@ -50,7 +50,7 @@ const App = () => {
                     </Suspense>
                 </div>
             </div>
-        </BrowserRouter>
+        </HashRouter>
     );
 };
 
