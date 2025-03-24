@@ -32,7 +32,7 @@ const App = () => {
     }
 
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
             <div className="app-wrapper">
                 <HeaderApi />
                 <Nav />
