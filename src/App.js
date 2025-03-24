@@ -32,7 +32,7 @@ const App = () => {
     }
 
     return (
-        <HashRouter basename={process.env.PUBLIC_URL}>
+        <HashRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
             <div className="app-wrapper">
                 <HeaderApi />
                 <Nav />
