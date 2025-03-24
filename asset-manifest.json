@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/madiaslanov/social-network/static/css/main.d68ea74a.css",
+    "main.js": "/madiaslanov/social-network/static/js/main.ac210a52.js",
+    "static/css/447.7020c67c.chunk.css": "/madiaslanov/social-network/static/css/447.7020c67c.chunk.css",
+    "static/js/447.35c9c390.chunk.js": "/madiaslanov/social-network/static/js/447.35c9c390.chunk.js",
+    "static/css/861.1fa4e093.chunk.css": "/madiaslanov/social-network/static/css/861.1fa4e093.chunk.css",
+    "static/js/861.364a0bfb.chunk.js": "/madiaslanov/social-network/static/js/861.364a0bfb.chunk.js",
+    "static/media/loading.gif": "/madiaslanov/social-network/static/media/loading.dbb22bcf8555073ea29a.gif",
+    "index.html": "/madiaslanov/social-network/index.html",
+    "main.d68ea74a.css.map": "/madiaslanov/social-network/static/css/main.d68ea74a.css.map",
+    "main.ac210a52.js.map": "/madiaslanov/social-network/static/js/main.ac210a52.js.map",
+    "447.7020c67c.chunk.css.map": "/madiaslanov/social-network/static/css/447.7020c67c.chunk.css.map",
+    "447.35c9c390.chunk.js.map": "/madiaslanov/social-network/static/js/447.35c9c390.chunk.js.map",
+    "861.1fa4e093.chunk.css.map": "/madiaslanov/social-network/static/css/861.1fa4e093.chunk.css.map",
+    "861.364a0bfb.chunk.js.map": "/madiaslanov/social-network/static/js/861.364a0bfb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d68ea74a.css",
+    "static/js/main.ac210a52.js"
+  ]
+}
