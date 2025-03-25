@@ -1,11 +1,11 @@
-import style from "../../users/users.module.css";
-import Loading from "../../users/img/loading.gif";
+import style from "./preloader.module.css";
+import preloader from "../../users/img/preloader.gif";
 import React from "react";
 
 let Preloader = () =>{
 
     return   (<>
-       <img className={style.image} src={Loading} alt="Loading"/>
+       <img className={style.image} src={preloader} alt="Loading"/>
         </>)
 }
 

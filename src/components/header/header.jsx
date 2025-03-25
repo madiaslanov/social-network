@@ -6,7 +6,7 @@ import {logout} from "../../redux/thunk";
 const Header = ({ userData, logOutUser }) => {
   return (
       <header className={st.header}>
-        <img src="https://static.vecteezy.com/vite/assets/photo-masthead-375-BoK_p8LG.webp" alt="Logo" />
+          <span className={st.title}>Social Network</span>
         <div className={st.loginBlock}>
           {userData.isAuth ? (<div >
               <span className={st.span}>{userData.login}</span>

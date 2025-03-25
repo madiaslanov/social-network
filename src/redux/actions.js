@@ -77,3 +77,19 @@ export const deletePost = (id) => ({
     type: 'DELETE_POST',
     id : Number(id)
 })
+
+export const savePhoto = (photos) => ({
+    type: 'SAVE_PHOTO',
+    photos,
+})
+
+export const aboutMe = ({fullName, lookingForAJob, lookingForAJobDescription, contacts}) => ({
+
+    type: 'ABOUT_ME',
+    payload: {
+        fullName,
+        lookingForAJob,
+        lookingForAJobDescription,
+        contacts
+    }
+})

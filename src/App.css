@@ -1,19 +1,18 @@
-.app-wrapper{
-  display: grid;
-  grid-template-areas: 
-  "h h"
-  "n m";
-  grid-template-rows: 60px 1fr;
-  grid-auto-rows: 2fr 10fr;
-  grid-template-columns: 2fr 9fr;
-  gap: 20px;
-  margin: 0 auto;
-  width: 1200px;
+.app-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10%;
 }
 
-.app-wrapper-content{
-    grid-area: m;
+.app-AllSection {
+    display: flex;
+    padding-top: 20px;
 }
 
+.content {
+    background-color: rgba(21, 34, 42, 0.9);
+    border: 1px solid rgba(112, 128, 144, 0.9);
+    border-radius: 8px;
+    width: 100%;
 
-
+}

@@ -60,3 +60,18 @@ export const logoutUserApi = async () => {
     const response = await instance.delete(`auth/login`);
     return response.data;
 };
+
+export const putPhotoApi = (photo) => {
+    const formData = new FormData();
+    formData.append("image", photo);
+
+    return instance.put(`/profile/photo`, formData, {
+        headers: {
+            "Content-Type": "multipart/form-data"
+        }
+    }).then(res => res.data);
+};
+
+export const putAboutMeApi = (me) => {
+    return instance.put(`/profile`,me).then(res => res.data);
+}

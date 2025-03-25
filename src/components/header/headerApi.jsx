@@ -15,13 +15,11 @@ const HeaderApi = () => {
     };
 
     useEffect(() => {
-        console.log("getAuth вызван");
         dispatch(getAuth());
     }, [dispatch]);
 
     useEffect(() => {
         if (!isAuth) {
-            console.log("Пользователь не авторизован, редирект на /login");
             navigate("/login");
         }
     }, [isAuth, navigate]);

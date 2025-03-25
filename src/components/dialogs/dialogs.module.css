@@ -47,3 +47,9 @@
   outline: none;
   border-color: #c16608;
 }
+
+.main{
+  color: white;
+  text-align: center;
+  margin-top: 15px;
+}

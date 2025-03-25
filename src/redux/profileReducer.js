@@ -1,14 +1,22 @@
+import {aboutMe} from "./actions";
+
 const initialState = {
-    postsData: [{id: 1, message: 'My first post', count: 15},
-        {id: 2, message: 'Good bye!', count: 20}],
+    postsData: [],
     newTextValue: '',
     profile: null,
-    status: ""
+    status: "",
+    photos: null,
+    aboutMe: {
+        fullName: "",
+        aboutMe: "",
+        lookingForAJob: null,
+        lookingForAJobDescription: "",
+        contacts: ""
+    }
 };
 
 
 const ProfileReducer = (state = initialState, action) => {
-
     switch (action.type) {
         case 'ADD_POST':
             let newPost = {
@@ -20,16 +28,12 @@ const ProfileReducer = (state = initialState, action) => {
                 ...state,
                 postsData: [...state.postsData, newPost]
             };
-
-        case 'UPDATE_NEW_TEXT':
-            return {
-                ...state,
-                newTextValue: action.newText
-            };
         case 'SET_USER_PROFILE':
             return {
                 ...state,
-                profile: action.profile
+                profile: action.profile,
+                photos: action.profile?.photos || state.photos,
+                aboutMe: action.profile?.aboutMe
             };
         case 'SET_STATUS':
             return {
@@ -41,6 +45,29 @@ const ProfileReducer = (state = initialState, action) => {
                 ...state,
                 postsData: state.postsData.filter(post => Number(post.id) !== action.id)
             };
+        case 'SAVE_PHOTO':
+            return {
+                ...state,
+                photos: {
+                    ...state.photos,
+                    large: action.photos?.large || state.photos.large,
+                    small: action.photos?.small || state.photos.small,
+                }
+            };
+        case 'ABOUT_ME':
+            console.log("📩 Данные для обновления профиля:", action.payload);
+            return {
+                ...state,
+                profile: {
+                    ...state.profile,
+                    ...action.payload
+                },
+                aboutMe: {
+                    ...state.aboutMe,
+                    ...action.payload
+                }
+            };
+
         default:
             return state;
     }

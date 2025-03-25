@@ -1,27 +1,26 @@
-
-.container{
-    display: grid;
-    grid-template-columns: 1fr;
-    padding: 10px;
+.container {
+    display: flex;
+    flex-direction: column;
 }
 
-.selectedPage{
-    font-weight: 700;
-    padding: 3px;
-    border: 1px solid black;
-    margin: 5px;
-    border-radius: 5px;
+.selectedPage {
+    color: white;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 
-.pagination{
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     text-align: center;
     align-items: center;
+    color: white;
+    gap: 20px;
 }
 
-.image{
-    height: 50vh;
-    margin-left: 200px;
-    width: 300px;
+.image {
+    width: 50px;
 }
 

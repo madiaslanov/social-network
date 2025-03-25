@@ -1,7 +1,6 @@
 .form{
     display: flex;
     flex-direction: column;
-    height: 50vh;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -13,6 +12,7 @@
     text-align: center;
     font-size: 35px;
     font-weight: 500;
+    color: white;
 }
 
 .input{
@@ -39,4 +39,17 @@ input:focus{
     border-radius: 5px;
     background-color: beige;
     border: 1px solid silver;
+}
+.remember{
+    color: white;
+}
+
+.freeAccount{
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+.freeAccount p{
+    text-align: center;
+    margin: 5px 0 5px 0;
 }

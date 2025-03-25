@@ -1,14 +1,14 @@
 import React from "react";
 import MyPosts from "./myPosts/myPosts";
 import ProfileInfo from "./profileInfo/profileInfo";
-import st from './profile.module.css';
+import style from "./profile.module.css"
 
-
-const Profile = ({profileData, profileStatus}) => {
+const Profile = ({profileData, profileStatus, profilePhoto, isOwner, savePhoto}) => {
     return (
-        <div className={st.main}>
-            <ProfileInfo profileStatus={profileStatus} profileData={profileData} />
-            <MyPosts />
+        <div className={style.main}>
+            <ProfileInfo isOwner={isOwner} profileStatus={profileStatus} profilePhoto={profilePhoto}
+                         profileData={profileData} savePhoto={savePhoto}/>
+            <MyPosts/>
         </div>
     );
 };

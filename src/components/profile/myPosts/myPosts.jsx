@@ -12,7 +12,6 @@ const MyPostsForm = () => {
     });
 
     const onSubmit = (values) => {
-        console.log(values);
         if (values.newPost.trim()) {
             dispatch(addPost(values.newPost));
             reset();
@@ -51,7 +50,6 @@ const MyPosts = () => {
     const postElement = posts.map((p) => <Post message={p.message} count={p.count} key={p.id} />);
     return (
         <div>
-            <div>My post</div>
             {postElement}
         </div>
     )

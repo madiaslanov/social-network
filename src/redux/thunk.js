@@ -1,7 +1,8 @@
 import {
+    aboutMe,
     followingInProgress,
     followUser, initializedSuccess,
-    isFetching, setAuthUserData, setInitializedSuccess, setStatus,
+    isFetching, savePhoto, setAuthUserData, setStatus,
     setTotalCount,
     setUserProfile,
     setUsers,
@@ -11,7 +12,7 @@ import {
     followUserApi,
     getAuthUserApi,
     getProfileApi, getProfileStatusApi,
-    getUsersApi, loginUserApi, logoutUserApi,
+    getUsersApi, loginUserApi, logoutUserApi, putAboutMeApi, putPhotoApi,
     putProfileStatusApi,
     unfollowUserApi
 } from "../api/api";
@@ -122,7 +123,6 @@ export const updateUserStatus = (status) => async (dispatch) => {
 export const login = (email, password, rememberMe) => async (dispatch) => {
     try {
         const data = await loginUserApi(email, password, rememberMe);
-        console.log("Ответ сервера:", data);
 
         if (data.resultCode === 0) {
             dispatch(getAuth());
@@ -139,8 +139,6 @@ export const login = (email, password, rememberMe) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
     try {
         const data = await logoutUserApi();
-        console.log("Ответ сервера при выходе:", data);
-
         if (data.resultCode === 0) {
             dispatch(setAuthUserData({
                 userId: null,
@@ -163,3 +161,38 @@ export const initializedApp = () => async (dispatch) => {
         dispatch(initializedSuccess(false));
     }
 };
+
+
+
+export const savePhotoThunk = (photo) => async (dispatch) => {
+    try {
+        const data = await putPhotoApi(photo);
+        if (data.resultCode === 0 && data.data.photos) {
+            dispatch(savePhoto(data.data.photos));
+        } else {
+            console.error("Ошибка: сервер не вернул фото!", data);
+        }
+    } catch (error) {
+        console.error("Ошибка сети при обновлении фото:", error);
+    }
+};
+
+
+export const profileAboutMe = (me) => async (dispatch) => {
+    console.log("🚀 Данные уходят в API:", me);
+    try{
+        const data = await putAboutMeApi(me);
+        console.log("✅ Ответ API:", data);
+        if (data.resultCode === 0) {
+            dispatch(aboutMe({
+                fullName: me.fullName,
+                lookingForAJob: me.lookingForAJob,
+                lookingForAJobDescription: me.lookingForAJobDescription,
+                contacts: me.contacts
+            }))
+        }
+    }
+    catch (error) {
+        console.log(error);
+    }
+}

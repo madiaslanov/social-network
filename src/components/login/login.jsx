@@ -20,7 +20,6 @@ const LoginForm = () => {
 
 
     const onSubmit = (values) => {
-        console.log("Отправляемые данные:", values);
         dispatch(setFormData(values));
         dispatch(login(values.email, values.password, values.rememberMe));
     };
@@ -51,14 +50,14 @@ const LoginForm = () => {
                     placeholder="Password"
                     {...register("password", {
                         required: "Password is required",
-                        minLength: {value: 6, message: "Password must be at least 6 characters"}
+                        minLength: {value: 4, message: "Password must be at least 4 characters"}
                     })}
                 />
                 {errors.password && <p className={style.error}>{errors.password.message}</p>}
             </div>
 
             <div>
-                <label>
+                <label className={style.remember}>
                     <input type="checkbox" {...register("rememberMe")} /> Remember me!
                 </label>
             </div>
@@ -80,6 +79,10 @@ const Login = () => {
         <div>
             <h1 className={style.title}>Login</h1>
             <LoginForm/>
+            <div className={style.freeAccount}>
+                <p>Email: free@samuraijs.com</p>
+                <p>Password: free</p>
+            </div>
         </div>
     );
 };

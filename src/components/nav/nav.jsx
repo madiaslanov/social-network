@@ -1,24 +1,28 @@
 import React from "react";
 import st from './nav.module.css';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import RecomendFriends from "./recomend/recomendFriends";
+import {useSelector} from "react-redux";
+import Login from "../login/login";
+
 
 const Nav = () => {
-    return <nav className={st.nav}>
-        <div>
-            <NavLink to="/profile" className={({isActive}) => isActive ? st.active : ''}>Profile</NavLink>
-        </div>
-        <div>
-            <NavLink to="/dialogs" className={({isActive}) => isActive ? st.active : ''}>Messages</NavLink></div>
-        <div>
-            <div>
-                <NavLink to="/users" className={({isActive}) => isActive ? st.active : ''}>Users</NavLink></div>
-            <NavLink to="/news" className={({isActive}) => isActive ? st.active : ''}>News</NavLink></div>
-        <div>
-            <NavLink to="/music" className={({isActive}) => isActive ? st.active : ''}>Music</NavLink></div>
-        <div>
-            <NavLink to="/settings" className={({isActive}) => isActive ? st.active : ''}>Settings</NavLink></div>
 
-    </nav>
-}
+    const isAuth = useSelector((user) => user.auth.isAuth);
+    return (
+        (isAuth) ? (
+        <nav className={st.nav}>
+            <NavLink to="/profile" className={({ isActive }) => isActive ? st.active : ''}>Profile</NavLink>
+            <NavLink to="/users" className={({ isActive }) => isActive ? st.active : ''}>Friends</NavLink>
+            <NavLink to="/dialogs" className={({ isActive }) => isActive ? st.active : ''}>Dialogs</NavLink>
+            <NavLink to="/news" className={({ isActive }) => isActive ? st.active : ''}>News</NavLink>
+            <NavLink to="/music" className={({ isActive }) => isActive ? st.active : ''}>Music</NavLink>
+            <NavLink to="/settings" className={({ isActive }) => isActive ? st.active : ''}>Settings</NavLink>
+            <div>
+                <RecomendFriends />
+            </div>
+        </nav>) : ''
+    );
+};
 
 export default Nav;
