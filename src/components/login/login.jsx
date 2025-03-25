@@ -6,10 +6,11 @@ import {setFormData} from "../../redux/actions";
 import {login} from "../../redux/thunk";
 import {useNavigate} from "react-router-dom";
 
-const LoginForm = () => {
+const LoginForm = ({captcha}) => {
     const dispatch = useDispatch();
     const formData = useSelector((state) => state.form)
     const auth = useSelector((state) => state.auth.messages)
+
 
     const {register, handleSubmit, formState: {errors}} =
         useForm(
@@ -18,10 +19,9 @@ const LoginForm = () => {
                 defaultValues: formData
             });
 
-
     const onSubmit = (values) => {
         dispatch(setFormData(values));
-        dispatch(login(values.email, values.password, values.rememberMe));
+        dispatch(login(values.email, values.password, values.rememberMe, values.captcha));
     };
 
     return (
@@ -69,12 +69,22 @@ const LoginForm = () => {
             <div>
                 <button type="submit" className={style.button}>Login</button>
             </div>
+            {captcha && <img src={captcha.url}/>}
+            {captcha && 
+            <label>
+                <input type="text" {...register("captcha",{
+                    required: "Captcha is required",
+                }) }
+                />
+            </label>
+            }
         </form>
     );
 };
 
 const Login = () => {
     const isAuthState = useSelector((state) => state.auth.isAuth);
+    const captcha = useSelector((state) => state.auth.captcha);
     const navigate = useNavigate();
     useEffect(() => {
         if (isAuthState) return navigate("/profile");
@@ -82,7 +92,7 @@ const Login = () => {
     return (
         <div>
             <h1 className={style.title}>Login</h1>
-            <LoginForm/>
+            <LoginForm captcha={captcha}/>
             <div className={style.freeAccount}>
                 <p>Email: free@samuraijs.com</p>
                 <p>Password: free</p>

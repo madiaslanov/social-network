@@ -52,8 +52,8 @@ export const putProfileStatusApi = (status) => {
 };
 
 
-export const loginUserApi = (email, password, rememberMe) => {
-    return instance.post(`auth/login`, {email, password, rememberMe}).then(res => res.data);
+export const loginUserApi = (email, password, rememberMe,captcha) => {
+    return instance.post(`auth/login`, {email, password, rememberMe,captcha}).then(res => res.data);
 };
 
 export const logoutUserApi = async () => {
@@ -74,4 +74,8 @@ export const putPhotoApi = (photo) => {
 
 export const putAboutMeApi = (me) => {
     return instance.put(`/profile`,me).then(res => res.data);
+}
+
+export const getSecurityApi = async () => {
+    return instance.get('security/get-captcha-url').then(res => res.data);
 }

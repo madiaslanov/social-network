@@ -1,3 +1,5 @@
+import messages from "../components/dialogs/messages/messages";
+
 export const sendMessage = (newMessage) => ({
     type: 'SEND-MESSAGE',
     newMessage,
@@ -79,7 +81,6 @@ export const savePhoto = (photos) => ({
 })
 
 export const aboutMe = ({fullName, lookingForAJob, lookingForAJobDescription, contacts}) => ({
-
     type: 'ABOUT_ME',
     payload: {
         fullName,
@@ -87,4 +88,9 @@ export const aboutMe = ({fullName, lookingForAJob, lookingForAJobDescription, co
         lookingForAJobDescription,
         contacts
     }
+})
+
+export const captchaMessage = (url) => ({
+    type: 'CAPTCHA_MESSAGE',
+    payload: url
 })

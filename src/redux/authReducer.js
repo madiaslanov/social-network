@@ -4,6 +4,7 @@ let initialState = {
     login: null,
     isAuth: false,
     messages: [],
+    captcha: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -13,6 +14,11 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 ...action.payload
             };
+        case "CAPTCHA_MESSAGE":
+                return {
+                ...state,
+                    captcha: action.payload,
+                }
         default:
             return state;
     }

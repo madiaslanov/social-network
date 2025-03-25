@@ -1,5 +1,5 @@
 import {
-    aboutMe,
+    aboutMe, captchaMessage,
     followingInProgress,
     followUser, initializedSuccess,
     isFetching, savePhoto, setAuthUserData, setStatus,
@@ -11,7 +11,7 @@ import {
 import {
     followUserApi,
     getAuthUserApi,
-    getProfileApi, getProfileStatusApi,
+    getProfileApi, getProfileStatusApi, getSecurityApi,
     getUsersApi, loginUserApi, logoutUserApi, putAboutMeApi, putPhotoApi,
     putProfileStatusApi,
     unfollowUserApi
@@ -120,13 +120,17 @@ export const updateUserStatus = (status) => async (dispatch) => {
     }
 };
 
-export const login = (email, password, rememberMe) => async (dispatch) => {
+export const login = (email, password, rememberMe, captcha) => async (dispatch) => {
     try {
-        const data = await loginUserApi(email, password, rememberMe);
+        const data = await loginUserApi(email, password, rememberMe, captcha);
 
         if (data.resultCode === 0) {
             dispatch(getAuth());
-        } else {
+        }
+        else {
+            if(data.resultCode === 10) {
+                dispatch(getCaptchaUrl())
+            }
             dispatch(setAuthUserData({messages: data.messages}));
         }
     } catch (error) {
@@ -181,6 +185,17 @@ export const profileAboutMe = (me) => async (dispatch) => {
             }))
         }
     } catch (error) {
+        console.error(error);
+    }
+}
+
+
+export const getCaptchaUrl = () => async (dispatch) => {
+    try {
+        const data = await getSecurityApi();
+        dispatch(captchaMessage(data));
+    }
+    catch (error) {
         console.error(error);
     }
 }
