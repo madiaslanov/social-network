@@ -54,7 +54,7 @@ export const putProfileStatusApi = (status) => {
 
 export const loginUserApi = (email, password, rememberMe) => {
     return instance.post(`auth/login`, {email, password, rememberMe}).then(res => res.data);
-}
+};
 
 export const logoutUserApi = async () => {
     const response = await instance.delete(`auth/login`);

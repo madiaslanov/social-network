@@ -13,7 +13,6 @@ const HeaderApi = () => {
     const logOutUser = () => {
         dispatch(logout());
     };
-
     useEffect(() => {
         dispatch(getAuth());
     }, [dispatch]);

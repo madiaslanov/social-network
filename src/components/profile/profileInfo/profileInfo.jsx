@@ -37,7 +37,6 @@ const ProfileInfo = ({ profileData, profileStatus, profilePhoto, isOwner, savePh
     const onSubmitSuccess = () => {
         setEditMode(false);
     };
-
     return (
         <div className={st.main}>
             <div className={st.description}>
@@ -65,9 +64,12 @@ const ProfileInfo = ({ profileData, profileStatus, profilePhoto, isOwner, savePh
                         ) : (
                             <ProfileData isOwner={isOwner} profileStatus={profileStatus} profileData={profileData} />
                         )}
-                        <button onClick={onDataChange} className={st.editBtn}>
-                            {editMode ? "Save info" : "Edit info"}
-                        </button>
+                        {isOwner && (
+                            <button onClick={onDataChange} className={st.editBtn}>
+                                {editMode ? "Save info" : "Edit info"}
+                            </button>
+                        )}
+
                     </div>
                 </div>
             </div>

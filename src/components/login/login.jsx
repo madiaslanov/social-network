@@ -9,7 +9,7 @@ import {useNavigate} from "react-router-dom";
 const LoginForm = () => {
     const dispatch = useDispatch();
     const formData = useSelector((state) => state.form)
-
+    const auth = useSelector((state) => state.auth.messages)
 
     const {register, handleSubmit, formState: {errors}} =
         useForm(
@@ -40,7 +40,7 @@ const LoginForm = () => {
                     })}
                 />
 
-                {errors.login && <p className={style.error}>{errors.email.message}</p>}
+                {errors.email && <p className={style.error}>{errors.email.message}</p>}
             </div>
 
             <div>
@@ -53,7 +53,11 @@ const LoginForm = () => {
                         minLength: {value: 4, message: "Password must be at least 4 characters"}
                     })}
                 />
-                {errors.password && <p className={style.error}>{errors.password.message}</p>}
+                {errors.password ? (
+                    <p className={style.error}>{errors.password.message}</p>
+                ) : auth && (
+                    <p className={style.error}>{auth[0]}</p>
+                )}
             </div>
 
             <div>

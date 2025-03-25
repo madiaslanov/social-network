@@ -36,7 +36,7 @@ export const setTotalCount = (totalCount) => ({
 
 export const isFetching = (status) => ({
     type: 'IS_FETCHING',
-        status
+    status
 })
 
 export const setUserProfile = (profile) => ({
@@ -44,9 +44,9 @@ export const setUserProfile = (profile) => ({
     profile
 })
 
-export const setAuthUserData = ({ userId, email, login, isAuth }) => ({
+export const setAuthUserData = ({userId, email, login, isAuth, messages}) => ({
     type: 'SET_AUTH_USER_DATA',
-    payload: { userId, email, login, isAuth }
+    payload: {userId, email, login, isAuth, messages},
 });
 
 
@@ -68,14 +68,9 @@ export const setFormData = (formData) => ({
 })
 
 
-export const initializedSuccess = (initialized) => ({
-    type: 'INITIALIZED',
-    initialized
-})
-
 export const deletePost = (id) => ({
     type: 'DELETE_POST',
-    id : Number(id)
+    id: Number(id)
 })
 
 export const savePhoto = (photos) => ({

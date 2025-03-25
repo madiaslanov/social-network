@@ -127,13 +127,12 @@ export const login = (email, password, rememberMe) => async (dispatch) => {
         if (data.resultCode === 0) {
             dispatch(getAuth());
         } else {
-            console.error("Ошибка логина:", data.messages);
+            dispatch(setAuthUserData({messages: data.messages}));
         }
     } catch (error) {
-        console.error("Ошибка сети при логине:", error);
+        console.error("Ошибка авторизации:", error);
     }
 };
-
 
 
 export const logout = () => async (dispatch) => {
@@ -152,15 +151,6 @@ export const logout = () => async (dispatch) => {
     }
 };
 
-export const initializedApp = () => async (dispatch) => {
-    try {
-        await dispatch(getAuth());
-        dispatch(initializedSuccess(true));
-    } catch (error) {
-        console.error("Ошибка инициализации:", error);
-        dispatch(initializedSuccess(false));
-    }
-};
 
 
 
@@ -179,10 +169,9 @@ export const savePhotoThunk = (photo) => async (dispatch) => {
 
 
 export const profileAboutMe = (me) => async (dispatch) => {
-    console.log("🚀 Данные уходят в API:", me);
-    try{
+
+    try {
         const data = await putAboutMeApi(me);
-        console.log("✅ Ответ API:", data);
         if (data.resultCode === 0) {
             dispatch(aboutMe({
                 fullName: me.fullName,
@@ -191,8 +180,7 @@ export const profileAboutMe = (me) => async (dispatch) => {
                 contacts: me.contacts
             }))
         }
-    }
-    catch (error) {
-        console.log(error);
+    } catch (error) {
+        console.error(error);
     }
 }

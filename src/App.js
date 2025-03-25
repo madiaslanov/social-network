@@ -10,21 +10,12 @@ import LoginPage from "./components/login/login";
 import HeaderApi from "./components/header/headerApi";
 import {useDispatch, useSelector} from "react-redux";
 import Preloader from "./components/common/preloader/preloader";
-import {initializedApp} from "./redux/thunk";
 
 
 const ProfileApi = lazy(() => import("./components/profile/profileApi"));
 const UsersApi = lazy(() => import("./components/users/usersApi"));
 
 const App = () => {
-    const dispatch = useDispatch();
-    const initialized = useSelector((state) => state.app.initialized);
-
-    useEffect(() => {
-        dispatch(initializedApp());
-    }, [dispatch]);
-
-
     return (
         <HashRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
             <div className="app-wrapper">

@@ -55,7 +55,6 @@ const ProfileReducer = (state = initialState, action) => {
                 }
             };
         case 'ABOUT_ME':
-            console.log("📩 Данные для обновления профиля:", action.payload);
             return {
                 ...state,
                 profile: {

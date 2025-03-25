@@ -2,7 +2,8 @@ let initialState = {
     userId: null,
     email: null,
     login: null,
-    isAuth: false
+    isAuth: false,
+    messages: [],
 };
 
 const authReducer = (state = initialState, action) => {

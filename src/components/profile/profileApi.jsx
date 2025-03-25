@@ -23,10 +23,16 @@ const ProfileApi = () => {
             console.error("Нет userID и myId для загрузки профиля!");
             return;
         }
-        navigate(`/profile/${profileId}`, {replace: true});
+
+        if (!userID && profileId !== myId) {
+            navigate(`/profile/${profileId}`, {replace: true});
+            return;
+        }
+
         dispatch(getProfile(profileId));
         dispatch(setUserStatus(profileId));
     }, [userID, myId, dispatch, navigate, isAuthState]);
+
 
     const savePhoto = (file) => {
         if (file) {
@@ -34,7 +40,7 @@ const ProfileApi = () => {
         }
     };
 
-    const isOwner = myId && myId.toString() === userID?.toString();
+    const isOwner = !userID || myId?.toString() === userID.toString();
     const profileData = useSelector((state) => state.profilePages.profile);
     const profileStatus = useSelector((state) => state.profilePages.status);
     const profilePhoto = useSelector((state) => state.profilePages.photos);
