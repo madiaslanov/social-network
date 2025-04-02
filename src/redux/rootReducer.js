@@ -1,20 +1,24 @@
 import {combineReducers} from "redux";
-import profileReduser from "./profileReducer";
-import dialogReduser from "./dialogReducer";
+import profileReducer from "./profileReducer";
+import dialogReducer from "./dialogReducer";
 import sidebarReducer from "./sidebarReducer";
-import usersReduser from "./usersReducer";
-import authReduser from "./authReducer";
+import usersReducer from "./usersReducer";
+import authReducer from "./authReducer";
 import {formReducer} from "./formReducer";
 import appReducer from "./appReducer";
+import musicReducer from "./musicReducer";
+import newsReduser from "./newsReduser";
 
 let rootReducer = combineReducers({
-    profilePages: profileReduser,
-    dialogsPages: dialogReduser,
+    profilePages: profileReducer,
+    dialogsPages: dialogReducer,
     sidebarPages: sidebarReducer,
-    usersPages: usersReduser,
-    auth: authReduser,
+    usersPages: usersReducer,
+    auth: authReducer,
     form : formReducer,
     app : appReducer,
+    musicPages : musicReducer,
+    newsPages : newsReduser
 });
 
 export default rootReducer;

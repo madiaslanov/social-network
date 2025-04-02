@@ -2,4 +2,36 @@
     color: white;
     text-align: center;
     margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px
+}
+
+.main img{
+    width: 90%;
+    height: 90%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+}
+
+.newsList{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30%;
+    padding: 0 10px;
+    height: 50vh;
+}
+.newsDescription{
+    display: flex;
+    flex-direction: column;
+}
+
+.loading{
+    text-align: center;
+    color: white;
+    padding-top: 10px;
 }

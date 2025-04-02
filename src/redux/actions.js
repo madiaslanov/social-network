@@ -1,5 +1,3 @@
-import messages from "../components/dialogs/messages/messages";
-
 export const sendMessage = (newMessage) => ({
     type: 'SEND-MESSAGE',
     newMessage,
@@ -93,4 +91,63 @@ export const aboutMe = ({fullName, lookingForAJob, lookingForAJobDescription, co
 export const captchaMessage = (url) => ({
     type: 'CAPTCHA_MESSAGE',
     payload: url
+})
+
+export const getArtistSuccess = (artistData) => ({
+    type: 'GET_ARTIST_SUCCESS',
+    payload: artistData,
+});
+
+export const getMusicFailure = (errorMessage) => ({
+    type: 'GET_MUSIC_FAILURE',
+    payload: errorMessage,
+});
+
+
+export const getArtistsSuccess = (artistsData) => ({
+    type: 'GET_ARTISTS_SUCCESS',
+    payload: artistsData
+})
+
+
+export const setArtistPageSize = (page) => ({
+    type: 'SET_ARTIST_PAGE_SIZE',
+    payload: page
+});
+
+export const setCurrentArtistPage = (page) => ({
+    type: 'SET_CURRENT_PAGE',
+    payload: page
+});
+
+export const setArtistsTotalCount = (totalCount) => ({
+    type: 'SET_ARTISTS_TOTAL_COUNT',
+    payload: totalCount
+})
+
+export const getArtistTopTracksSuccess = (tracks) => ({
+    type: 'GET_ARTIST_TOP_TRACKS',
+    payload: tracks
+});
+
+
+export const getTrackSuccess = (trackData) => ({
+    type: 'GET_TRACK_SUCCESS',
+    payload: trackData
+})
+
+
+export const getAlbumsSuccess = (albumData) => ({
+    type: 'GET_ALBUMS_SUCCESS',
+    payload: albumData
+})
+
+export const getAlbumSuccess = (albumId) => ({
+        type: 'GET_ALBUM_SUCCESS',
+        payload: albumId
+})
+
+export const getTrendNewsSuccess = (trendNews) => ({
+    type: 'GET_TREND_NEWS_SUCCESS',
+    payload: trendNews
 })

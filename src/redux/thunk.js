@@ -1,8 +1,17 @@
 import {
-    aboutMe, captchaMessage,
+    aboutMe,
+    captchaMessage,
     followingInProgress,
-    followUser, initializedSuccess,
-    isFetching, savePhoto, setAuthUserData, setStatus,
+    followUser, getAlbumsSuccess, getAlbumSuccess,
+    getArtistsSuccess,
+    getArtistSuccess,
+    getArtistTopTracksSuccess,
+    getMusicFailure,
+    getTrackSuccess, getTrendNewsSuccess,
+    isFetching,
+    savePhoto, setArtistPageSize, setArtistsTotalCount,
+    setAuthUserData, setCurrentArtistPage,
+    setStatus,
     setTotalCount,
     setUserProfile,
     setUsers,
@@ -12,7 +21,7 @@ import {
     followUserApi,
     getAuthUserApi,
     getProfileApi, getProfileStatusApi, getSecurityApi,
-    getUsersApi, loginUserApi, logoutUserApi, putAboutMeApi, putPhotoApi,
+    getUsersApi, loginUserApi, logoutUserApi, musicApi, newsApi, putAboutMeApi, putPhotoApi,
     putProfileStatusApi,
     unfollowUserApi
 } from "../api/api";
@@ -126,9 +135,8 @@ export const login = (email, password, rememberMe, captcha) => async (dispatch) 
 
         if (data.resultCode === 0) {
             dispatch(getAuth());
-        }
-        else {
-            if(data.resultCode === 10) {
+        } else {
+            if (data.resultCode === 10) {
                 dispatch(getCaptchaUrl())
             }
             dispatch(setAuthUserData({messages: data.messages}));
@@ -156,8 +164,6 @@ export const logout = () => async (dispatch) => {
 };
 
 
-
-
 export const savePhotoThunk = (photo) => async (dispatch) => {
     try {
         const data = await putPhotoApi(photo);
@@ -173,7 +179,6 @@ export const savePhotoThunk = (photo) => async (dispatch) => {
 
 
 export const profileAboutMe = (me) => async (dispatch) => {
-
     try {
         const data = await putAboutMeApi(me);
         if (data.resultCode === 0) {
@@ -194,8 +199,94 @@ export const getCaptchaUrl = () => async (dispatch) => {
     try {
         const data = await getSecurityApi();
         dispatch(captchaMessage(data));
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+export const getArtist = (artistId) => async (dispatch) => {
+    try {
+        const token = await musicApi.getSpotifyToken();
+
+        const response = await musicApi.getArtist(artistId, token);
+        dispatch(getArtistSuccess(response));
+    } catch (error) {
+        console.error("Error fetching music data:", error);
+
+        dispatch(getMusicFailure("Failed to fetch music data"));
+    }
+};
+
+export const getArtists = (pageSize, currentPage) => async (dispatch) => {
+    try {
+        const token = await musicApi.getSpotifyToken();
+        const data = await musicApi.getArtists(token, pageSize, currentPage);
+
+        dispatch(setCurrentArtistPage(currentPage));
+        dispatch(getArtistsSuccess(data));
+        dispatch(setArtistPageSize(pageSize));
+        dispatch(setArtistsTotalCount(data.length));
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+
+export const getArtistTopTracks = (artistId) => async (dispatch) => {
+    try {
+        const token = await musicApi.getSpotifyToken();
+        const data = await musicApi.getArtistTopTracks(artistId, token);
+        dispatch(getArtistTopTracksSuccess(data.tracks));
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const getTrack = (trackId) => async (dispatch) => {
+    try {
+        const token = await musicApi.getSpotifyToken();
+        const data = await musicApi.getTrack(trackId, token);
+
+        dispatch(getTrackSuccess(data));
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+export const getAlbums = (albumId) => async (dispatch) => {
+    try {
+        const token = await musicApi.getSpotifyToken()
+        const data = await musicApi.getAlbums(albumId, token);
+
+        dispatch(getAlbumsSuccess(data.albums));
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const getAlbum = (albumId) => async (dispatch) => {
+    try {
+        const token = await musicApi.getSpotifyToken();
+        const data = await musicApi.getAlbum(albumId, token);
+
+        dispatch(getAlbumSuccess(data))
     }
     catch (error) {
+        console.error(error);
+    }
+}
+
+
+export const getTrendingTopicsNews = () => async (dispatch) => {
+    try{
+        const data = await newsApi.getTrendingTopicsNews();
+
+        console.log(data);
+        dispatch(getTrendNewsSuccess(data));
+    }
+    catch (error){
         console.error(error);
     }
 }

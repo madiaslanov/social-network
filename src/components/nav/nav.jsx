@@ -3,7 +3,6 @@ import st from './nav.module.css';
 import { NavLink } from 'react-router-dom';
 import RecomendFriends from "./recomend/recomendFriends";
 import {useSelector} from "react-redux";
-import Login from "../login/login";
 
 
 const Nav = () => {
@@ -15,7 +14,7 @@ const Nav = () => {
             <NavLink to="/profile" className={({ isActive }) => isActive ? st.active : ''}>Profile</NavLink>
             <NavLink to="/users" className={({ isActive }) => isActive ? st.active : ''}>Friends</NavLink>
             <NavLink to="/dialogs" className={({ isActive }) => isActive ? st.active : ''}>Dialogs</NavLink>
-            <NavLink to="/news" className={({ isActive }) => isActive ? st.active : ''}>News</NavLink>
+            <NavLink to="/news/general" className={({ isActive }) => isActive ? st.active : ''}>News</NavLink>
             <NavLink to="/music" className={({ isActive }) => isActive ? st.active : ''}>Music</NavLink>
             <NavLink to="/settings" className={({ isActive }) => isActive ? st.active : ''}>Settings</NavLink>
             <div>
