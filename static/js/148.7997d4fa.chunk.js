@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[148],{2148:(s,a,c)=>{c.r(a),c.d(a,{default:()=>m});c(2483);var i=c(6966),l=c(7752),e=c(6723);const m=()=>(0,e.jsx)(e.Fragment,{children:(0,e.jsxs)("div",{className:i.A.container,children:[(0,e.jsx)(l.k2,{to:"/music/artists",className:i.A.music,children:" Artists "}),(0,e.jsx)(l.k2,{to:"/music/albums",className:i.A.music,children:" Albums "}),(0,e.jsx)(l.k2,{to:"/music/playlists",className:i.A.music,children:" Playlists "})]})})}}]);
+//# sourceMappingURL=148.7997d4fa.chunk.js.map
